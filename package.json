@@ -7,12 +7,24 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "jest --watch --coverage --config=./configs/jest/jest.json",
-    "start": "NODE_ENV=development webpack-dev-server --mode development --inline --progress --config=./configs/webpack/dev.js",
-    "build": "NODE_ENV=production node --max-old-space-size=8192 ./node_modules/.bin/webpack --mode production --config=./configs/webpack/prod.js",
+    "test": "jest --verbose --coverage --watch",
+    "start": "NODE_ENV=development webpack-dev-server --mode development --inline --progress --config=./config/webpack/dev.js",
+    "build": "NODE_ENV=production node --max-old-space-size=8192 ./node_modules/.bin/webpack --mode production --config=./config/webpack/prod.js",
     "prettier": "prettier --single-quote --trailing-comma --write './**/*.ts'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/react/cleanup-after-each",
+      "@testing-library/jest-dom/extend-expect"
+    ],
+    "transform": {
+      ".*": "<rootDir>/node_modules/babel-jest"
+    }
   },
   "repository": {
     "type": "git",
@@ -25,8 +37,6 @@
   },
   "homepage": "https://github.com/franciscpd/react-bookmarks#readme",
   "dependencies": {
-    "axios": "^0.19.0",
-    "classnames": "^2.2.6",
     "clean-webpack-plugin": "^3.0.0",
     "core-js": "^3.1.4",
     "html-webpack-plugin": "^3.2.0",
@@ -36,12 +46,14 @@
     "redux": "^4.0.4",
     "terser-webpack-plugin": "^1.3.0",
     "webpack": "^4.38.0",
-    "webpack-merge": "^4.2.1"
+    "webpack-merge": "^4.2.1",
+    "react-hot-loader": "^4.12.9"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/parser": "^7.5.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^5.1.9",
@@ -51,13 +63,18 @@
     "@storybook/addon-viewport": "^5.1.9",
     "@storybook/addons": "^5.1.9",
     "@storybook/react": "^5.1.9",
+    "@testing-library/jest-dom": "^4.0.0",
+    "@testing-library/react": "^8.0.7",
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.13.4",
+    "@types/react": "^16.8.13",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-redux": "^7.0.6",
+    "@types/storybook__react": "^4.0.1",
     "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
-    "babel-plugin-root-import": "^6.1.0",
     "css-loader": "^3.1.0",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
-    "enzyme-to-json": "^3.3.5",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
@@ -76,9 +93,9 @@
     "node-sass": "^4.12.0",
     "prettier": "^1.18.2",
     "prettier-check": "^2.0.0",
-    "react-hot-loader": "^4.12.9",
     "redux-devtools-extension": "^2.13.8",
     "sass-loader": "^7.1.0",
+    "source-map-loader": "^0.2.4",
     "uglifyjs-webpack-plugin": "^2.1.3",
     "url-loader": "^2.1.0",
     "webpack-bundle-analyzer": "^3.3.2",
