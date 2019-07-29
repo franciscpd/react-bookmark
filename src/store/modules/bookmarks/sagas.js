@@ -24,7 +24,7 @@ export function* loadBookmarks() {
 export function* addBookmark({ bookmark }) {
   try {
     const bookmarks = yield call(() => JSON.parse(localStorage.getItem("bookmarks")) || []);
-    bookmark = { id: (Math.max(bookmarks.map(b => b.id)) || 0) + 1, ...bookmark };
+    bookmark = { id: (bookmarks.length ? Math.max.apply(null, bookmarks.map(b => b.id)) : 0) + 1, ...bookmark };
     bookmarks.push(bookmark);
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
     yield put(addBookmarkSuccess(bookmark));

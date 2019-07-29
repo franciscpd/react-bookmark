@@ -20,7 +20,7 @@ const BookmarkSearch = ({ onChange }) => {
   return (
     <Container>
       <form onSubmit={handleSubmitForm}>
-        <input name="term" placeholder="Filter by Tag" required value={term} onChange={handleChange} />
+        <input name="term" placeholder="Filter by Tag" required value={term} onChange={handleChange} autoFocus />
       </form>
     </Container>
   );

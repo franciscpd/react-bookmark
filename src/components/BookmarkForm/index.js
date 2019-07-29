@@ -35,6 +35,10 @@ class BookmarkForm extends React.Component {
     tags: React.createRef(),
   };
 
+  componentDidMount() {
+    this.objectRefs.title.current.focus();
+  }
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -47,6 +51,7 @@ class BookmarkForm extends React.Component {
     e.preventDefault();
     addBookmarkAction({ title, link, tags: tags.split(" ") });
     this.setState({ title: "", link: "", tags: "" });
+    this.objectRefs.title.current.focus();
   };
 
   handleKeyDown = (e) => {

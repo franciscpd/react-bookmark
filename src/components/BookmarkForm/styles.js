@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   form {
-    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
 
     button {
       display: none;
@@ -14,7 +15,6 @@ export const Container = styled.div`
       color: #bfc6ca;
       padding: 10px 20px;
       border-radius: 5px;
-      margin: 0 10px;
 
       ::placeholder {
         color: #bfc6ca;

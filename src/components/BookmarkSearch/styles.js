@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  form {
-    margin-bottom: 25px;
+  width: 100%;
 
+  form {
     input {
       border: 1px solid #bfc6ca;
       background: transparent;
