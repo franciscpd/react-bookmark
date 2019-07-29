@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { removeBookmarkTag, removeBookmark } from "../../store/modules/bookmarks/actions";
+import { removeBookmarkTag, removeBookmark, loadBookmarks } from "../../store/modules/bookmarks/actions";
 
 import {
   Container, Title, Bookmark, Tag, Button,
@@ -13,6 +13,10 @@ const deleteIcon = require("../../../assets/images/Trash.svg");
 const BookmarkList = () => {
   const bookmarks = useSelector(state => state.bookmarks);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadBookmarks());
+  }, [dispatch]);
 
   return (
     <Container>

@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
   span {
     color: #bfc6ca;
+    text-align: center;
+    display: block;
   }
 
   li {

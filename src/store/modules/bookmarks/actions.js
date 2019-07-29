@@ -1,6 +1,6 @@
 export const addBookmark = bookmark => ({
   type: "ADD_BOOKMARK",
-  payload: { bookmark },
+  bookmark,
 });
 
 export const addBookmarkSuccess = bookmark => ({
@@ -14,7 +14,7 @@ export const addBookmarkFailure = () => ({
 
 export const removeBookmark = id => ({
   type: "REMOVE_BOOKMARK",
-  payload: { id },
+  id,
 });
 
 export const removeBookmarkSuccess = bookmarks => ({
@@ -28,7 +28,8 @@ export const removeBookmarkFailure = () => ({
 
 export const removeBookmarkTag = (id, tag) => ({
   type: "REMOVE_BOOKMARK_TAG",
-  payload: { id, tag },
+  id,
+  tag,
 });
 
 export const removeBookmarkTagSuccess = bookmarks => ({

@@ -21,7 +21,7 @@ export function* loadBookmarks() {
   }
 }
 
-export function* addBookmark(bookmark) {
+export function* addBookmark({ bookmark }) {
   try {
     const bookmarks = yield call(() => JSON.parse(localStorage.getItem("bookmarks")) || []);
     bookmark = { id: bookmarks.length + 1, ...bookmark };
@@ -33,7 +33,7 @@ export function* addBookmark(bookmark) {
   }
 }
 
-export function* removeBookmark(id) {
+export function* removeBookmark({ id }) {
   try {
     const bookmarks = yield call(() => JSON.parse(localStorage.getItem("bookmarks")) || []);
     const bookmarkIndex = bookmarks.map(b => b.id).indexOf(id);

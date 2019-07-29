@@ -35,7 +35,7 @@ describe("Bookmarks saga", () => {
   it("should be able to add bookmark", async () => {
     const dispatch = jest.fn();
 
-    await runSaga({ dispatch }, addBookmark, baseData[0]).toPromise();
+    await runSaga({ dispatch }, addBookmark, { bookmark: baseData[0] }).toPromise();
 
     expect(localStorage.setItem).toHaveBeenCalledWith("bookmarks", JSON.stringify([baseData[0]]));
     expect(dispatch).toHaveBeenCalledWith(addBookmarkSuccess(baseData[0]));
@@ -45,7 +45,7 @@ describe("Bookmarks saga", () => {
     const dispatch = jest.fn();
 
     await baseData.forEach(async (b) => {
-      await runSaga({ dispatch }, addBookmark, b).toPromise();
+      await runSaga({ dispatch }, addBookmark, { bookmark: b }).toPromise();
     });
 
     await runSaga({ dispatch }, loadBookmarks).toPromise();
@@ -59,10 +59,10 @@ describe("Bookmarks saga", () => {
     const expected = baseData.filter(b => b.id !== 1);
 
     await baseData.forEach(async (b) => {
-      await runSaga({ dispatch }, addBookmark, b).toPromise();
+      await runSaga({ dispatch }, addBookmark, { bookmark: b }).toPromise();
     });
 
-    await runSaga({ dispatch }, removeBookmark, 1).toPromise();
+    await runSaga({ dispatch }, removeBookmark, { id: 1 }).toPromise();
 
     expect(localStorage.setItem).toHaveBeenCalledWith("bookmarks", JSON.stringify(expected));
     expect(dispatch).toHaveBeenCalledWith(removeBookmarkSuccess(expected));
@@ -72,7 +72,7 @@ describe("Bookmarks saga", () => {
     const dispatch = jest.fn();
     const expected = { ...baseData[0], tags: baseData[0].tags.filter(t => t !== "javascript") };
 
-    await runSaga({ dispatch }, addBookmark, baseData[0]).toPromise();
+    await runSaga({ dispatch }, addBookmark, { bookmark: baseData[0] }).toPromise();
 
     await runSaga({ dispatch }, removeBookmarkTag, { id: baseData[0].id, tag: "javascript" }).toPromise();
 
