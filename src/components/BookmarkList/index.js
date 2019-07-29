@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import PropTypes from "prop-types";
 import { removeBookmarkTag, removeBookmark, loadBookmarks } from "../../store/modules/bookmarks/actions";
 
 import {
@@ -10,7 +10,8 @@ import {
 const deleteTag = require("../../../assets/images/X.svg");
 const deleteIcon = require("../../../assets/images/Trash.svg");
 
-const BookmarkList = () => {
+const BookmarkList = ({ filter }) => {
+  const [data, setData] = useState([]);
   const bookmarks = useSelector(state => state.bookmarks);
   const dispatch = useDispatch();
 
@@ -18,10 +19,19 @@ const BookmarkList = () => {
     dispatch(loadBookmarks());
   }, [dispatch]);
 
+  useEffect(() => {
+    const terms = filter.trim() !== "" ? filter.split(" ") : [];
+    let tmpData = [...bookmarks];
+    if (terms.length) {
+      tmpData = tmpData.filter(b => b.tags.find(t => terms.find(m => t.indexOf(m) !== -1)));
+    }
+    setData(tmpData);
+  }, [bookmarks, filter]);
+
   return (
     <Container>
       <ul>
-        {bookmarks.map((bookmark, index) => (
+        {data.map((bookmark, index) => (
           <li key={bookmark.id} style={index === bookmarks.length - 1 ? { borderBottom: "none" } : {}}>
             <Bookmark>
               <Title>{bookmark.title}</Title>
@@ -52,9 +62,18 @@ const BookmarkList = () => {
           </li>
         ))}
         {!bookmarks.length && <span>Nenhum favorito cadastrado</span>}
+        {!data.length && filter && <span>Nenhum favorito encontrado</span>}
       </ul>
     </Container>
   );
+};
+
+BookmarkList.propTypes = {
+  filter: PropTypes.string,
+};
+
+BookmarkList.defaultProps = {
+  filter: "",
 };
 
 export default BookmarkList;
