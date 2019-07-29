@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for index.js</title>
+    <title>Code coverage report for store/modules/bookmarks/sagas.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="prettify.css" />
-    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -16,35 +16,35 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="index.html">All files</a> index.js
+      <a href="../../../index.html">All files</a> / <a href="index.html">store/modules/bookmarks</a> sagas.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">30.77% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>11/11</span>
+        <span class='fraction'>4/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>2/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>5/5</span>
+        <span class='fraction'>2/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">27.27% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>10/10</span>
+        <span class='fraction'>3/11</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -78,71 +78,71 @@
 <a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
+  call, put, all, takeLatest,
+} from "redux-saga/effects";
+import {
+  loadBookmarksFailure, loadBookmarksSuccess, addBookmarkSuccess, addBookmarkFailure,
+} from "./actions";
 &nbsp;
-const BookmarkList = () =&gt; {
-  const [title, setTitle] = useState("");
+export function* loadBookmarks() {
+  try {
+    const bookmarks = yield call(() =&gt; JSON.parse(localStorage.getItem("bookmarks") || []));
+<span class="cstat-no" title="statement not covered" >    yield put(loadBookmarksSuccess(bookmarks));</span>
+  } catch (error) {
+    yield put(loadBookmarksFailure());
+  }
+}
 &nbsp;
-  const bookmarks = useSelector(state =&gt; state.bookmarks);
-  const dispatch = useDispatch();
+export function* <span class="fstat-no" title="function not covered" >addBookmark(</span>bookmark) {
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const bookmarks = <span class="cstat-no" title="statement not covered" >yield call(<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem("bookmarks") || []))</span>;</span>
+<span class="cstat-no" title="statement not covered" >    bookmark = { id: bookmarks[bookmarks.length - 1] || 1, ...bookmark };</span>
+<span class="cstat-no" title="statement not covered" >    bookmarks.push(bookmark);</span>
+<span class="cstat-no" title="statement not covered" >    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));</span>
+<span class="cstat-no" title="statement not covered" >    yield put(addBookmarkSuccess(bookmark));</span>
+  } catch (error) {
+<span class="cstat-no" title="statement not covered" >    yield put(addBookmarkFailure());</span>
+  }
+}
 &nbsp;
-  const handleAddBookmark = () =&gt; {
-    dispatch({ type: "ADD_BOOKMARK", payload: { bookmark: title } });
-    setTitle("");
-  };
-&nbsp;
-  return (
-    &lt;form data-testid="bookmark-form" onSubmit={handleAddBookmark}&gt;
-      &lt;ul data-testid="bookmark-list"&gt;
-        {bookmarks.map(bookmark =&gt; (
-          &lt;li key={bookmark}&gt;{bookmark}&lt;/li&gt;
-        ))}
-      &lt;/ul&gt;
-      &lt;label htmlFor="title"&gt;Title&lt;/label&gt;
-      &lt;input id="title" value={title} onChange={e =&gt; setTitle(e.target.value)} /&gt;
-      &lt;button onClick={handleAddBookmark}&gt;Adicionar&lt;/button&gt;
-    &lt;/form&gt;
-  );
-};
-&nbsp;
-export default BookmarkList;
+export default all([takeLatest("LOAD_BOOKMARKS", loadBookmarks), takeLatest("ADD_BOOKMARK", addBookmark)]);
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Jul 26 2019 22:35:32 GMT-0300 (Brasilia Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jul 28 2019 08:27:30 GMT-0300 (Brasilia Standard Time)
 </div>
 </div>
-<script src="prettify.js"></script>
+<script src="../../../prettify.js"></script>
 <script>
 window.onload = function () {
         if (typeof prettyPrint === 'function') {
@@ -150,7 +150,7 @@ window.onload = function () {
         }
 };
 </script>
-<script src="sorter.js"></script>
-<script src="block-navigation.js"></script>
+<script src="../../../sorter.js"></script>
+<script src="../../../block-navigation.js"></script>
 </body>
 </html>

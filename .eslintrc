@@ -5,7 +5,7 @@
     "browser": true,
     "jest": true
   },
-  "plugins": ["react", "jsx-a11y", "import"],
+  "plugins": ["react", "jsx-a11y", "import", "react-hooks"],
   "rules": {
     "react/jsx-filename-extension": [
       "error",
@@ -21,6 +21,8 @@
     "default-case": 0,
     "no-else-return": 0,
     "no-param-reassign": 0,
-    "quotes": 0
+    "quotes": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
