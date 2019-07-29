@@ -4,13 +4,13 @@ import {
   addBookmarkSuccess,
   removeBookmarkSuccess,
   removeBookmarkTagSuccess,
-} from "../../../../src/store/modules/bookmarks/actions";
+} from "../../../src/store/modules/bookmarks/actions";
 import {
   loadBookmarks,
   addBookmark,
   removeBookmark,
   removeBookmarkTag,
-} from "../../../../src/store/modules/bookmarks/sagas";
+} from "../../../src/store/modules/bookmarks/sagas";
 
 const baseData = [
   {

@@ -1,5 +1,5 @@
-import reducer, { INITIAL_STATE } from "../../../../src/store/modules/bookmarks/reducer";
-import * as Bookmarks from "../../../../src/store/modules/bookmarks/actions";
+import reducer, { INITIAL_STATE } from "../../../src/store/modules/bookmarks/reducer";
+import * as Bookmarks from "../../../src/store/modules/bookmarks/actions";
 
 describe("Bookmarks reducer", () => {
   it("ADD_BOOKMARK_SUCCESS", () => {
