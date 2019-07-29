@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "jest --verbose --coverage --watch",
+    "test": "jest --verbose --coverage",
     "start": "NODE_ENV=development webpack-dev-server --mode development --inline --progress --config=./config/webpack/dev.js",
     "build": "NODE_ENV=production node --max-old-space-size=8192 ./node_modules/.bin/webpack --mode production --config=./config/webpack/prod.js",
     "prettier": "prettier --single-quote --trailing-comma --write './**/*.ts'",
