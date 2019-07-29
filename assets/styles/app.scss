@@ -13,11 +13,9 @@ html {
 }
 
 body {
-  display: flex;
-  flex: 1;
   margin-top: 120px;
   background-color: #efefef;
-  justify-content: center;
+  -webkit-font-smoothing: antialiased;
 }
 
 body,
@@ -27,7 +25,8 @@ button {
 }
 
 #root {
-  max-width: 1020px;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 button {

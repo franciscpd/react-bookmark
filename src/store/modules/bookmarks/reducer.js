@@ -1,6 +1,19 @@
 import produce from "immer";
 
-export const INITIAL_STATE = [];
+export const INITIAL_STATE = [
+  {
+    id: 1,
+    title: "Node.js",
+    link: "http://www.google.com",
+    tags: ["javascript", "node"],
+  },
+  {
+    id: 2,
+    title: "ReactJS",
+    link: "www.google.com",
+    tags: ["javascript", "react"],
+  },
+];
 
 export default function bookmarks(state = INITIAL_STATE, action) {
   return produce(state, (draft) => {

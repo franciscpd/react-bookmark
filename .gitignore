@@ -9,6 +9,8 @@ dist
 .DS_Store
 npm-debug.log*
 
+.vscode
+
 #tests
 __tests__/__coverage__
 __tests__/__snapshots__
