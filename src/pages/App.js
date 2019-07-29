@@ -3,12 +3,15 @@ import { Provider } from "react-redux";
 import { hot } from "react-hot-loader/root";
 
 import store from "../store";
-import { Header, Body, BookmarkList } from "../components";
+import {
+  Header, Body, BookmarkList, BookmarkForm,
+} from "../components";
 
 const App = () => (
   <Provider store={store}>
     <Header />
     <Body>
+      <BookmarkForm />
       <BookmarkList />
     </Body>
   </Provider>
